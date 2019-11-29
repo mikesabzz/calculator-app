@@ -16,27 +16,21 @@ class Num1 extends React.Component {
     }
     
     handleNum1Change(event) {
-        console.log(event.target.value)
         this.setState({
-            num1: event.target.value 
+            num1: event.target.value
         })
         this.setState({
             num1Clicked: true
         })
     }
     handleNum2Change(event) {
-        console.log(event.target.value)
         this.setState({
-            num2: event.target.value 
+            num2: event.target.value
         })
         this.setState({
             num2Clicked: true
         })
     }
-
-   
-
-
     getAddResult = () => {
         const{num1, num2} = this.state
         this.setState({ 
@@ -69,11 +63,6 @@ class Num1 extends React.Component {
     
     render() {
         console.log(this.state.result)
-        // if (this.state.num1Clicked == true) {          
-        //     return <Num2 />
-        // } 
-        
-   
         return (
             <div className="row m-3">
                 <form>
