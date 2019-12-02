@@ -5,30 +5,28 @@ class Num1 extends React.Component {
     constructor(){
         super()
         this.state = {
-            num1: 0,
-            num2: 0,
+            num1: [],
+            num2: [],
             result: 0,
-            num1Clicked: false,
-            num2Clicked: false,
         }
         this.handleNum1Change = this.handleNum1Change.bind(this)
         this.handleNum2Change = this.handleNum2Change.bind(this)
+        this.reset = this.reset.bind(this)
+        
     }
-    
+    reset() {
+        this.setState({num1: 0})
+        this.setState({num2: 0})
+        this.setState({result: 0})
+    }
     handleNum1Change(event) {
         this.setState({
             num1: event.target.value
-        })
-        this.setState({
-            num1Clicked: true
         })
     }
     handleNum2Change(event) {
         this.setState({
             num2: event.target.value
-        })
-        this.setState({
-            num2Clicked: true
         })
     }
     getAddResult = () => {
@@ -59,7 +57,7 @@ class Num1 extends React.Component {
         })
         this.setState({clicked: true})
     }
-    
+
     
     render() {
         console.log(this.state.result)
@@ -78,6 +76,7 @@ class Num1 extends React.Component {
                     </label>
                 </form>
                 <div className="col-sm">
+                        <button onClick={this.reset}>Clear</button>
                     <h1>First Input</h1>
                     <button onClick={this.handleNum1Change} value="1" className="btn btn-dark m-1 btn-lg">1</button>
                     <button onClick={this.handleNum1Change} value="2" className="btn btn-dark m-1 btn-lg">2</button>
