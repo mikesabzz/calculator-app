@@ -5,57 +5,61 @@ class Num1 extends React.Component {
     constructor(){
         super()
         this.state = {
-            num1: [],
-            num2: [],
-            result: 0,
+            num1: "",
+            num2: "",
+            num1Arr: [],
+            num2Arr: [],
+            result: "",
         }
         this.handleNum1Change = this.handleNum1Change.bind(this)
         this.handleNum2Change = this.handleNum2Change.bind(this)
-        this.reset = this.reset.bind(this)
-        
+        this.reset = this.reset.bind(this)        
     }
     reset() {
-        this.setState({num1: 0})
-        this.setState({num2: 0})
-        this.setState({result: 0})
+        this.setState({num1: ""})
+        this.setState({num2: ""})
+        this.setState({result: ""})
     }
+   
     handleNum1Change(event) {
         this.setState({
-            num1: event.target.value
-        })
-    }
+           num1: [...this.state.num1, event.target.value]
+          })
+    } 
+
     handleNum2Change(event) {
         this.setState({
-            num2: event.target.value
+            num2: [...this.state.num2, event.target.value]
         })
     }
     getAddResult = () => {
         const{num1, num2} = this.state
         this.setState({ 
-            result: (parseInt(num1) + parseInt(num2))
+            result: [...this.state.result, num1+num2]
         })
-        this.setState({clicked: true})
+        this.setState({result: parseInt(...this.state.result)})
+        console.log(num1)
+        console.log(num2)
+        console.log(this.state.result)
     }
+
     getNegResult = () => {
         const{num1, num2} = this.state
         this.setState({ 
             result: (parseInt(num1) - parseInt(num2))
         })
-        this.setState({clicked: true})
     }
     getMultiResult = () => {
         const{num1, num2} = this.state
         this.setState({ 
             result: (parseInt(num1) * parseInt(num2))
         })
-        this.setState({clicked: true})
     }
     getDivideResult = () => {
         const{num1, num2} = this.state
         this.setState({ 
             result: (parseInt(num1) / parseInt(num2))
         })
-        this.setState({clicked: true})
     }
 
     
@@ -71,12 +75,11 @@ class Num1 extends React.Component {
                         <input type="button" className="btn btn-dark m-1 btn-lg" onClick={this.getNegResult} value="-" />
                         <input type="button" className="btn btn-dark m-1 btn-lg" onClick={this.getMultiResult} value="x" />
                         <input type="button" className="btn btn-dark m-1 btn-lg" onClick={this.getDivideResult} value="/" />
-
                         <h1 onChange={this.getAddResult} onChange={this.getNegResult} onChange={this.getMultiResult} onChange={this.getDivideResult}>{this.state.result}</h1>
+                        <button onClick={this.reset}>Clear</button>
                     </label>
                 </form>
                 <div className="col-sm">
-                        <button onClick={this.reset}>Clear</button>
                     <h1>First Input</h1>
                     <button onClick={this.handleNum1Change} value="1" className="btn btn-dark m-1 btn-lg">1</button>
                     <button onClick={this.handleNum1Change} value="2" className="btn btn-dark m-1 btn-lg">2</button>
@@ -112,4 +115,7 @@ class Num1 extends React.Component {
         )
     }
 }
+
+
+
 export default Num1
