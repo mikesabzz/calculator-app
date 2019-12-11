@@ -48,26 +48,30 @@ class Calculator extends React.Component {
     getDivideResult = () => {
         const{num1, num2} = this.state
         this.setState({ 
-            result: (parseFloat(num1) / parseFloat(num2))
+            result: (parseFloat(num1) / parseFloat(num2)).toFixed(2)
         })
     }
    
     render() {
         return (
             <div className="row m-3">
-                <div>
-                    <h1 onChange={this.handleNum1Change}>{this.state.num1}</h1>
-                    <h1 onChange={this.handleNum2Change}>{this.state.num2}</h1>
+                <div className="navbar-toggler font-weight-bold">
+                    First Input
+                    <h1  className="border border-info" onChange={this.handleNum1Change}>{this.state.num1}</h1>
                     <br />
-                    <h1 onChange={this.getAddResult} onChange={this.getNegResult} onChange={this.getMultiResult} onChange={this.getDivideResult}>{this.state.result}</h1>
+                    Second Input
+                    <h1  className="border border-info" onChange={this.handleNum2Change}>{this.state.num2}</h1>
+                    <br />
+                    Result
+                    <h1  className="border border-info" onChange={this.getAddResult} onChange={this.getNegResult} onChange={this.getMultiResult} onChange={this.getDivideResult}>{this.state.result}</h1>
                     <br />
                     <form>
                         <button className="btn btn-danger" onClick={this.clear}>Clear</button>
                     </form>
                 </div>
                 <div className="col-sm">
-                    <Link to="/firstinput">First Input</Link>
-                    <Link to="/secondinput">Second Input</Link>
+                    <Link to="/firstinput" className="btn btn-secondary active m-2">First Input</Link>
+                    <Link to="/secondinput" className="btn btn-secondary active m-2">Second Input</Link>
                     <Route path="/firstinput" component={() => <FirstInput handleNum1Props={this.handleNum1Change} />} />
                     <Route path="/secondinput" component={() => <SecondInput handleNum2Props={this.handleNum2Change} />} />
                     <br />
@@ -80,7 +84,5 @@ class Calculator extends React.Component {
         )
     }
 }
-
-
 
 export default Calculator
