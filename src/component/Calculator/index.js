@@ -2,7 +2,6 @@ import React from 'react';
 import { Link, Route } from 'react-router-dom'
 import FirstInput from '../FirstInput'
 import SecondInput from '../SecondInput'
-
 class Calculator extends React.Component {
     constructor(){
         super()
@@ -20,8 +19,8 @@ class Calculator extends React.Component {
     }
     handleNum1Change(event) {
         this.setState({
-           num1: [...this.state.num1, event.target.value].join('')
-          })
+            num1: [...this.state.num1, event.target.value].join('')
+        })
     }     
     handleNum2Change(event) {
         this.setState({
@@ -52,6 +51,7 @@ class Calculator extends React.Component {
             result: (parseFloat(num1) / parseFloat(num2))
         })
     }
+   
     render() {
         return (
             <div className="row m-3">
@@ -66,12 +66,10 @@ class Calculator extends React.Component {
                     </form>
                 </div>
                 <div className="col-sm">
-                <FirstInput handleNum1Props={this.handleNum1Change} />
-                <SecondInput handleNum2Props={this.handleNum2Change} />
                     <Link to="/firstinput">First Input</Link>
                     <Link to="/secondinput">Second Input</Link>
-                    <Route path="/firstinput" component={FirstInput} />
-                    <Route path="/secondinput" component={SecondInput} />
+                    <Route path="/firstinput" component={() => <FirstInput handleNum1Props={this.handleNum1Change} />} />
+                    <Route path="/secondinput" component={() => <SecondInput handleNum2Props={this.handleNum2Change} />} />
                     <br />
                     <input type="button" className="btn btn-dark m-1 btn-lg" onClick={this.getAddResult} value="+" />
                     <input type="button" className="btn btn-dark m-1 btn-lg" onClick={this.getNegResult} value="-" />
