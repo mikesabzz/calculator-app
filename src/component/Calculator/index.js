@@ -4,8 +4,8 @@ import FirstInput from '../FirstInput'
 import SecondInput from '../SecondInput'
 
 class Calculator extends React.Component {
-    constructor(props){
-        super(props)
+    constructor(){
+        super()
         this.state = {
             num1: "",
             num2: "",
@@ -18,21 +18,16 @@ class Calculator extends React.Component {
     clear() {
         this.reset()
     }
-    
-    
     handleNum1Change(event) {
-        console.log("hello")
         this.setState({
            num1: [...this.state.num1, event.target.value].join('')
           })
-    } 
-        
+    }     
     handleNum2Change(event) {
         this.setState({
             num2: [...this.state.num2, event.target.value].join('')
         })
     }
-   
     getAddResult = () => {
         const{num1, num2} = this.state
         this.setState({ 
@@ -57,7 +52,6 @@ class Calculator extends React.Component {
             result: (parseFloat(num1) / parseFloat(num2))
         })
     }
-
     render() {
         return (
             <div className="row m-3">
@@ -72,6 +66,8 @@ class Calculator extends React.Component {
                     </form>
                 </div>
                 <div className="col-sm">
+                <FirstInput handleNum1Props={this.handleNum1Change} />
+                <SecondInput handleNum2Props={this.handleNum2Change} />
                     <Link to="/firstinput">First Input</Link>
                     <Link to="/secondinput">Second Input</Link>
                     <Route path="/firstinput" component={FirstInput} />
