@@ -8,7 +8,7 @@ import Footer from './component/Footer';
 function App() {
   return (
     <div className="App">
-      <Header title="Calculator" />
+      <Header title="React Calculator" />
       <Calculator />
       <Footer text="created by Michael Sabzevari" />
     </div>
