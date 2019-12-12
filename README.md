@@ -1,5 +1,5 @@
 # React-Calculator-App
-react-calculator-by-ms.surge.sh
+http://react-calculator-by-ms.surge.sh/
 
 ### Web based and mobile responsive calculator using React and styled with Bootstrap.
 
