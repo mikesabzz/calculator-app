@@ -5,4 +5,4 @@
 
 ##### The perfect way to start learning React, by getting accustomed to state.
 
-![](calculator.gif)
+![](https://imgur.com/HQLGU4N.gif)
