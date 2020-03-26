@@ -17,7 +17,7 @@ class Calculator extends React.Component {
         this.handleNum2Change = this.handleNum2Change.bind(this)
     }
     clear() {
-        this.reset()
+        window.location.reload(false)
     }
     handleNum1Change(event) {
         this.setState({
@@ -27,6 +27,12 @@ class Calculator extends React.Component {
     handleNum2Change(event) {
         this.setState({
             num2: [...this.state.num2, event.target.value].join('')
+        })
+    }
+    getResult = () => {
+        const{num1} = this.state
+        this.setState({
+            result: eval(num1)
         })
     }
     getAddResult = (event) => {
@@ -67,6 +73,7 @@ class Calculator extends React.Component {
     }
    
     render() {
+        console.log(this.state.num1)
         return (
             <div className="row m-3">
                 <div className="navbar-toggler font-weight-bold">
@@ -87,7 +94,7 @@ class Calculator extends React.Component {
                 <div className="col-sm">
                     <Link to="/firstinput" className="btn btn-secondary active m-2">First Input</Link>
                     <Link to="/secondinput" className="btn btn-secondary active m-2">Second Input</Link>
-                    <Route path="/firstinput" component={() => <FirstInput handleNum1Props={this.handleNum1Change} />} />
+                    <Route path="/firstinput" component={() => <FirstInput handleNum1Props={this.handleNum1Change} clear={this.clear} result={this.getResult} />} />
                     <Route path="/secondinput" component={() => <SecondInput handleNum2Props={this.handleNum2Change} />} />
                     <br />
                     <input type="button" className="btn btn-secondary active m-1 btn-lg" onClick={this.getAddResult} value="+" />
