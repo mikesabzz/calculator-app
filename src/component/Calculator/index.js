@@ -1,101 +1,46 @@
 import React from 'react';
-import { Link, Route } from 'react-router-dom'
 import FirstInput from '../FirstInput'
-import SecondInput from '../SecondInput'
 
 class Calculator extends React.Component {
     constructor(){
         super()
         this.state = {
-            num1: "",
-            num2: "",
-            result: "",
-            operation: ""
+            inputField: "",
+            result: ""
         }
         this.clear = this.clear.bind(this) 
-        this.handleNum1Change = this.handleNum1Change.bind(this)
-        this.handleNum2Change = this.handleNum2Change.bind(this)
+        this.handleChange = this.handleChange.bind(this)
     }
     clear() {
         window.location.reload(false)
     }
-    handleNum1Change(event) {
+    handleChange(event) {
         this.setState({
-            num1: [...this.state.num1, event.target.value].join('')
+            inputField: [...this.state.inputField, event.target.value].join('')
         })
     }     
-    handleNum2Change(event) {
-        this.setState({
-            num2: [...this.state.num2, event.target.value].join('')
-        })
-    }
     getResult = () => {
-        const{num1} = this.state
+        const{inputField} = this.state
         this.setState({
-            result: eval(num1)
-        })
-    }
-    getAddResult = (event) => {
-        const{num1, num2} = this.state
-        this.setState({ 
-            result: (parseFloat(num1) + parseFloat(num2))
-        })
-        this.setState({ 
-            operation: event.target.value
-        })
-    }
-    getNegResult = (event) => {
-        const{num1, num2} = this.state
-        this.setState({ 
-            result: (parseFloat(num1) - parseFloat(num2))
-        })
-        this.setState({ 
-            operation: event.target.value
-        })
-    }
-    getMultiResult = (event) => {
-        const{num1, num2} = this.state
-        this.setState({ 
-            result: (parseFloat(num1) * parseFloat(num2))
-        })
-        this.setState({ 
-            operation: event.target.value
-        })
-    }
-    getDivideResult = (event) => {
-        const{num1, num2} = this.state
-        this.setState({ 
-            result: (parseFloat(num1) / parseFloat(num2)).toFixed(2)
-        })
-        this.setState({ 
-            operation: event.target.value
+            result: eval(inputField)
         })
     }
    
     render() {
-        console.log(this.state.num1)
         return (
             <div className="row m-3">
                 <div className="navbar-toggler font-weight-bold">
-                    First Input
-                    <h1 className="border border-info" onChange={this.handleNum1Change}>{this.state.num1}</h1>
-                    <h2 onChange={this.getAddResult} onChange={this.getNegResult} onChange={this.getMultiResult} onChange={this.getDivideResult}>{this.state.operation}</h2>
-                    <br />
-                    Second Input
-                    <h1  className="border border-info" onChange={this.handleNum2Change}>{this.state.num2}</h1>
+                    <h1 className="border border-info" onChange={this.handleChange}>{this.state.inputField}</h1>
                     <br />
                     Result
-                    <h1  className="border border-info" onChange={this.getAddResult} onChange={this.getNegResult} onChange={this.getMultiResult} onChange={this.getDivideResult}>{this.state.result}</h1>
+                    <h1  className="border border-info" >{this.state.result}</h1>
                     <br />
                     <form>
                         <button className="btn btn-danger" onClick={this.clear}>Clear</button>
                     </form>
                 </div>
                 <div className="col-sm">
-                    <Link to="/firstinput" className="btn btn-secondary active m-2">First Input</Link>
-                    <Link to="/secondinput" className="btn btn-secondary active m-2">Second Input</Link>
-                    <Route path="/firstinput" component={() => <FirstInput handleNum1Props={this.handleNum1Change} clear={this.clear} result={this.getResult} />} />
-                    <Route path="/secondinput" component={() => <SecondInput handleNum2Props={this.handleNum2Change} />} />
+                    <FirstInput handleinputFieldProps={this.handleChange} clear={this.clear} result={this.getResult} />
                     <br />
                     <input type="button" className="btn btn-secondary active m-1 btn-lg" onClick={this.getAddResult} value="+" />
                     <input type="button" className="btn btn-secondary active m-1 btn-lg" onClick={this.getNegResult} value="-" />
