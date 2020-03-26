@@ -6,7 +6,7 @@ const FirstInput = (props) => {
         <div>
             <button onClick={props.clear} className="btn btn-dark m-1 btn-lg">AC</button>
             <button onClick={props.handleinputFieldProps} value="-" className="btn btn-dark m-1 btn-lg">-</button>
-            <button onClick={props.handleinputFieldProps} value="%" className="btn btn-dark m-1 btn-lg">%</button>
+            <button onClick={props.squareRoot} className="btn btn-dark m-1 btn-lg">√</button>
             <button onClick={props.handleinputFieldProps} value="/" className="btn btn-secondary m-1 btn-lg">/</button>
             <br />
             <button onClick={props.handleinputFieldProps} value="7" className="btn btn-success m-1 btn-lg">7</button>

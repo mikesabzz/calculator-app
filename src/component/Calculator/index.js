@@ -17,7 +17,13 @@ class Calculator extends React.Component {
         this.setState({
             inputField: [...this.state.inputField, event.target.value].join('')
         })
-    }    
+    }  
+    squareRoot = () => {
+        const{inputField} = this.state
+        this.setState({
+            inputField: [Math.sqrt(inputField)].join('')
+        })
+    }  
     getResult = () => {
         const{inputField} = this.state
         this.setState({
@@ -34,6 +40,7 @@ class Calculator extends React.Component {
                     <FirstInput
                         clear={this.clear}
                         handleinputFieldProps={this.handleChange}
+                        squareRoot={this.squareRoot}
                         result={this.getResult}
                     />
                 </div>
